@@ -13,7 +13,7 @@ jobs:
     
     steps:
     - name: checkout
-      uses: actions/checkout@local
+      uses: actions/checkout@master
     
     - name: Set python
       uses: actions/setup-python@v2
