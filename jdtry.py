@@ -9,7 +9,11 @@ import configparser
 import os
 import datetime
 
-ftkey = ''
+# hao4k 账户信息
+jdCookie = os.environ["COOKIE"]
+
+# 添加 server 酱通知
+ftkey = os.environ["SERVERCHAN_SCKEY"]
 class jdobj:
     def __init__(self):
         self.name = ""
@@ -58,10 +62,11 @@ class jdtry:
         now_time = datetime.datetime.now()
         print ('当前时间' + str(now_time) + "正在检测登录状态！")
         parent_dir = os.path.dirname(os.path.abspath(__file__))
-        with open(parent_dir + '/cookie.txt', 'r') as f:
-            cokstr = f.read()
-            print(cokstr)
-            cookie = eval(cokstr)
+        # with open(parent_dir + '/cookie.txt', 'r') as f:
+        #     cokstr = f.read()
+        #     print(cokstr)
+        #     cookie = eval(cokstr)
+        cookie = eval(jdCookie)
 
             # 测试新cookie
         # 格式有效
@@ -120,9 +125,10 @@ class jdtry:
     def try_post(self, plan):
         # 申请试用
         parent_dir = os.path.dirname(os.path.abspath(__file__))
-        with open(parent_dir + '/cookie.txt', 'r') as f:
-            cokstr = f.read()
-            cookie = eval(cokstr)
+        # with open(parent_dir + '/cookie.txt', 'r') as f:
+        #     cokstr = f.read()
+        #     cookie = eval(cokstr)
+        cookie = eval(jdCookie)
         head = self.headers
         head['Host'] = 'try.jd.com'
         head['Referer'] = 'https://try.m.jd.com/'

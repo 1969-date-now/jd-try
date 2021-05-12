@@ -1,0 +1,30 @@
+name: try
+
+on:
+  push:
+    branches: 
+      - local
+  schedule:
+      - cron: 0 22,14 * * *
+
+jobs:
+  jd-try-work:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@local
+    
+    - name: Set python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    
+    - name: Install dependencies
+      run: python -m pip install --upgrade requests
+    
+    - name: jdtry
+      env:
+        COOKIE: ${{ secrets.COOKIE }}
+        SERVERCHAN_SCKEY: ${{ secrets.SERVERCHAN_SCKEY }}
+      run: python jdtry.py
